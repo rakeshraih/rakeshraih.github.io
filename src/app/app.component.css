@@ -1,0 +1,45 @@
+*{
+  padding: 10px;
+}
+
+section {
+  display: flex;
+}
+
+section + div{
+  display: flex;
+}
+
+section div span{
+  height: auto;
+}
+
+.textarea-holder{
+  display: flex;
+
+}
+.textarea-holder textarea, .textarea-holder div{
+  width: 100%;
+  min-height: 400px;
+}
+
+textarea{
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  resize: vertical;
+}
+
+textarea:focus{
+  border: 2px solid #ccc;
+  outline: none;
+}
+
+.filter-holder{
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}

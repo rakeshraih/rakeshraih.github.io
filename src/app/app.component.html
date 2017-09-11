@@ -1,0 +1,27 @@
+<md-toolbar color="primary">
+     CSS optimizer
+</md-toolbar>
+
+<div class="filter-holder">
+        <md-checkbox [(ngModel)]="minifyStatus" value="{{minifyStatus}}" (ngModelChange)="changeInScriptName()">
+                Minify
+        </md-checkbox>
+        <md-checkbox [(ngModel)]="groupStyle" value="{{groupStyle}}" (ngModelChange)="changeInScriptName()">
+                Group Styles
+        </md-checkbox>
+</div>
+
+<div class='textarea-holder'>
+<div>
+    <textarea value="{{cssStyle}}" [(ngModel)]="cssStyle" (ngModelChange)="changeInScriptName()">
+        test{
+          color: green;
+       }
+    </textarea>
+</div>
+
+<div>
+    <textarea  value="{{cssUpdated}}" [(ngModel)]="cssUpdated">
+    </textarea>
+</div>
+</div>
