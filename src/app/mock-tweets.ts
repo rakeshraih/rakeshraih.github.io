@@ -16,7 +16,7 @@ export const TWEETS: Tweet[] = [
 { key : 'Apple', type : 'tech', shown: false},
 { key : 'NatGeo', type : 'news', shown: false},
 { key : 'NYSE', type : 'news', shown: false},
-{ key : 'BillGates', type : 'people', shown: false},
+{ key : 'BillGates', type : 'people', shown: true},
 { key : 'DalaiLama', type : 'people', shown: true},
 { key : 'narendramodi', type : 'people', shown: false},
 { key : 'elonmusk', type : 'people', shown: false}
