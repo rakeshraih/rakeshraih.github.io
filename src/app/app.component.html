@@ -1,27 +1,416 @@
-<md-toolbar color="primary">
-     CSS optimizer
-</md-toolbar>
+<div class="container">
 
-<div class="filter-holder">
-        <md-checkbox [(ngModel)]="minifyStatus" value="{{minifyStatus}}" (ngModelChange)="changeInScriptName()">
-                Minify
-        </md-checkbox>
-        <md-checkbox [(ngModel)]="groupStyle" value="{{groupStyle}}" (ngModelChange)="changeInScriptName()">
-                Group Styles
-        </md-checkbox>
+
+         <div class="top-bar">
+                <md-form-field class="">
+                        <input mdInput [(ngModel)]="key" placeholder="@Twitter" value="{{key}}">  
+                        <span id="user-msg"></span>           
+                 </md-form-field>
+                <span>
+                <md-icon>
+                                <i (click)='addKey($event)' class="fa fa-plus-circle" aria-hidden="true"></i>
+                </md-icon>   
+                </span>
+         </div>
+
+        <br/><br/>
+
+        
+         <md-tab-group>
+                <md-tab>
+                  <ng-template md-tab-label>
+                                @Twitter
+                  </ng-template>
+                  <div class='key-holder'>
+                  <div *ngFor="let item of keysListAt; let i = index">
+                    <div class='key-holder-key'>
+                     <div class='key-holder-close'>
+                        <i class="fa fa-tag" aria-hidden="true" (click)="tagKeys($event,item)"></i>                                
+                        <i class="fa fa-times" aria-hidden="true" (click)="deleteKeys($event,item)"></i>
+                     </div>     
+                     <div  class='key-holder-key-content'>
+                        <div class="hide tag-selector">
+                                
+                                <div class="tag-selector-holder">
+                                    <a href="#" [ngClass]="item.type === 'news'? 'selected' : ''" (click)="selectedTag($event,'news',item.key)">                                                                
+                                          <div class="tag-selector-icon">
+                                                  <i aria-hidden="true" class="fa fa-newspaper-o"></i></div>
+                                        <div style="font-size: 12px;">News</div>
+                                     </a>
+                                </div>
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'person'? 'selected' : ''" (click)="selectedTag($event,'news',item.key)">                                                                
+                                                      <div class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-user-o"></i></div>
+                                                    <div style="font-size: 12px;">Person</div>
+                                                 </a>
+                                </div>
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'sport'? 'selected' : ''" (click)="selectedTag($event,'sport',item.key)">                                                                
+                                                      <div  class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-futbol-o"></i></div>
+                                                    <div style="font-size: 12px;">Sport</div>
+                                                 </a>
+                                </div>
+
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'tech'? 'selected' : ''" (click)="selectedTag($event,'tech',item.key)">                                                                
+                                                      <div  class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-microchip"></i></div>
+                                                    <div style="font-size: 12px;">Tech</div>
+                                                 </a>
+                                </div>
+
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'other'? 'selected' : ''" (click)="selectedTag($event,'other',item.key)">                                                                
+                                                      <div class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-th"></i></div>
+                                                    <div style="font-size: 12px;">Other</div>
+                                                 </a>
+                                </div>
+                                               
+                        </div>        
+                        <div (click)="showHideTwitterWidget($event,item.key)" [ngClass]="(item.shown)? 'widget-available item-class':'item-class'"
+                                >
+                                                @{{item.key}}
+                                </div>  
+                     </div>  
+                     </div> 
+                </div></div>    
+
+                </md-tab>
+
+                <md-tab>  
+                                <ng-template md-tab-label>
+                                                <i class="label-icon-fa fa fa-user-o" aria-hidden="true"></i>                                
+                                                People
+                                  </ng-template>
+
+                                                    <div class='key-holder'>
+                    <div *ngFor="let item of keysListAt; let i = index">                                     
+                    <div class='key-holder-key' *ngIf="item.type==='people'">
+                     <div class='key-holder-close'>
+                        <i class="fa fa-tag" aria-hidden="true" (click)="tagKeys($event,item)"></i>                                
+                        <i class="fa fa-times" aria-hidden="true" (click)="deleteKeys($event,item)"></i>
+                     </div>     
+                     <div  class='key-holder-key-content'>
+                        <div class="hide tag-selector">
+                                
+                                <div class="tag-selector-holder">
+                                    <a href="#" [ngClass]="item.type === 'news'? 'selected' : ''" (click)="selectedTag($event,'news',item.key)">                                                                
+                                          <div class="tag-selector-icon">
+                                                  <i aria-hidden="true" class="fa fa-newspaper-o"></i></div>
+                                        <div style="font-size: 12px;">News</div>
+                                     </a>
+                                </div>
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'person'? 'selected' : ''" (click)="selectedTag($event,'news',item.key)">                                                                
+                                                      <div class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-user-o"></i></div>
+                                                    <div style="font-size: 12px;">Person</div>
+                                                 </a>
+                                </div>
+                                                                            <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'sport'? 'selected' : ''" (click)="selectedTag($event,'sport',item.key)">                                                                
+                                                      <div  class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-futbol-o"></i></div>
+                                                    <div style="font-size: 12px;">Sport</div>
+                                                 </a>
+                                </div>
+
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'tech'? 'selected' : ''" (click)="selectedTag($event,'tech',item.key)">                                                                
+                                                      <div  class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-microchip"></i></div>
+                                                    <div style="font-size: 12px;">Tech</div>
+                                                 </a>
+                                </div>
+
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'other'? 'selected' : ''" (click)="selectedTag($event,'other',item.key)">                                                                
+                                                      <div class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-th"></i></div>
+                                                    <div style="font-size: 12px;">Other</div>
+                                                 </a>
+                                </div>
+                                               
+                        </div>        
+                        <div (click)="showHideTwitterWidget($event,item.key)" [ngClass]="(item.shown)? 'widget-available item-class':'item-class'"
+                                >
+                                                @{{item.key}}
+                                </div>  
+                     </div>  
+                     </div> </div>
+                  </div>    
+  
+                </md-tab>    
+
+                 <md-tab>  
+                                <ng-template md-tab-label>
+                                                <i class="label-icon-fa fa fa-newspaper-o" aria-hidden="true"></i>                                
+                                                News
+                                  </ng-template>
+
+                                                    <div class='key-holder'>
+                    <div *ngFor="let item of keysListAt; let i = index">                                     
+                    <div class='key-holder-key' *ngIf="item.type==='news'">
+                     <div class='key-holder-close'>
+                        <i class="fa fa-tag" aria-hidden="true" (click)="tagKeys($event,item)"></i>                                
+                        <i class="fa fa-times" aria-hidden="true" (click)="deleteKeys($event,item)"></i>
+                     </div>     
+                     <div  class='key-holder-key-content'>
+                        <div class="hide tag-selector">
+                                
+                                <div class="tag-selector-holder">
+                                    <a href="#" [ngClass]="item.type === 'news'? 'selected' : ''" (click)="selectedTag($event,'news',item.key)">                                                                
+                                          <div class="tag-selector-icon">
+                                                  <i aria-hidden="true" class="fa fa-newspaper-o"></i></div>
+                                        <div style="font-size: 12px;">News</div>
+                                     </a>
+                                </div>
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'person'? 'selected' : ''" (click)="selectedTag($event,'news',item.key)">                                                                
+                                                      <div class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-user-o"></i></div>
+                                                    <div style="font-size: 12px;">Person</div>
+                                                 </a>
+                                </div>
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'sport'? 'selected' : ''" (click)="selectedTag($event,'sport',item.key)">                                                                
+                                                      <div  class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-futbol-o"></i></div>
+                                                    <div style="font-size: 12px;">Sport</div>
+                                                 </a>
+                                </div>
+
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'tech'? 'selected' : ''" (click)="selectedTag($event,'tech',item.key)">                                                                
+                                                      <div  class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-microchip"></i></div>
+                                                    <div style="font-size: 12px;">Tech</div>
+                                                 </a>
+                                </div>
+
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'other'? 'selected' : ''" (click)="selectedTag($event,'other',item.key)">                                                                
+                                                      <div class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-th"></i></div>
+                                                    <div style="font-size: 12px;">Other</div>
+                                                 </a>
+                                </div>
+                                               
+                        </div>        
+                        <div (click)="showHideTwitterWidget($event,item.key)" [ngClass]="(item.shown)? 'widget-available item-class':'item-class'"
+                                >
+                                                @{{item.key}}
+                                </div>  
+                     </div>  
+                     </div> </div>
+                  </div>    
+  
+                </md-tab>               
+                <md-tab>  
+                                <ng-template md-tab-label>
+                                                <i class="label-icon-fa fa fa-futbol-o" aria-hidden="true"></i>                                
+                                                Sport
+                                  </ng-template>
+
+                                                    <div class='key-holder'>
+                    <div *ngFor="let item of keysListAt; let i = index">                                     
+                    <div class='key-holder-key' *ngIf="item.type==='sport'">
+                     <div class='key-holder-close'>
+                        <i class="fa fa-tag" aria-hidden="true" (click)="tagKeys($event,item)"></i>                                
+                        <i class="fa fa-times" aria-hidden="true" (click)="deleteKeys($event,item)"></i>
+                     </div>     
+                     <div  class='key-holder-key-content'>
+                        <div class="hide tag-selector">
+                                
+                                <div class="tag-selector-holder">
+                                    <a href="#" [ngClass]="item.type === 'news'? 'selected' : ''" (click)="selectedTag($event,'news',item.key)">                                                                
+                                          <div class="tag-selector-icon">
+                                                  <i aria-hidden="true" class="fa fa-newspaper-o"></i></div>
+                                        <div style="font-size: 12px;">News</div>
+                                     </a>
+                                </div>
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'person'? 'selected' : ''" (click)="selectedTag($event,'news',item.key)">                                                                
+                                                      <div class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-user-o"></i></div>
+                                                    <div style="font-size: 12px;">Person</div>
+                                                 </a>
+                                </div>
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'sport'? 'selected' : ''" (click)="selectedTag($event,'sport',item.key)">                                                                
+                                                      <div  class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-futbol-o"></i></div>
+                                                    <div style="font-size: 12px;">Sport</div>
+                                                 </a>
+                                </div>
+
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'tech'? 'selected' : ''" (click)="selectedTag($event,'tech',item.key)">                                                                
+                                                      <div  class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-microchip"></i></div>
+                                                    <div style="font-size: 12px;">Tech</div>
+                                                 </a>
+                                </div>
+
+                                <div class="tag-selector-holder">
+                                                <a href="#" [ngClass]="item.type === 'other'? 'selected' : ''" (click)="selectedTag($event,'other',item.key)">                                                                
+                                                      <div class="tag-selector-icon">
+                                                              <i aria-hidden="true" class="fa fa-th"></i></div>
+                                                    <div style="font-size: 12px;">Other</div>
+                                                 </a>
+                                </div>
+                                               
+                        </div>        
+                        <div (click)="showHideTwitterWidget($event,item.key)" [ngClass]="(item.shown)? 'widget-available item-class':'item-class'"
+                                >
+                                                @{{item.key}}
+                                </div>  
+                     </div>  
+                     </div> </div>
+                  </div>    
+  
+                </md-tab>
+                <md-tab >  
+                                
+                        <ng-template md-tab-label>
+                                        <i class="label-icon-fa fa fa-microchip" aria-hidden="true"></i>                                
+                                        Tech
+                                </ng-template>
+
+                                <div class='key-holder'>
+                                        <div *ngFor="let item of keysListAt; let i = index">
+                                                <div class='key-holder-key' *ngIf="item.type==='tech'">
+                                                 <div class='key-holder-close'>
+                                                    <i class="fa fa-tag" aria-hidden="true" (click)="tagKeys($event,item)"></i>                                
+                                                    <i class="fa fa-times" aria-hidden="true" (click)="deleteKeys($event,item)"></i>
+                                                 </div>     
+                                                 <div  class='key-holder-key-content'>
+                                                    <div class="hide tag-selector">
+                                                            
+                                                            <div class="tag-selector-holder">
+                                                                <a href="#" [ngClass]="item.type === 'news'? 'selected' : ''" (click)="selectedTag($event,'news',item.key)">                                                                
+                                                                      <div class="tag-selector-icon">
+                                                                              <i aria-hidden="true" class="fa fa-newspaper-o"></i></div>
+                                                                    <div style="font-size: 12px;">News</div>
+                                                                 </a>
+                                                            </div>
+                                                            <div class="tag-selector-holder">
+                                                                            <a href="#" [ngClass]="item.type === 'sport'? 'selected' : ''" (click)="selectedTag($event,'sport',item.key)">                                                                
+                                                                                  <div  class="tag-selector-icon">
+                                                                                          <i aria-hidden="true" class="fa fa-futbol-o"></i></div>
+                                                                                <div style="font-size: 12px;">Sport</div>
+                                                                             </a>
+                                                            </div>
+                            
+                                                            <div class="tag-selector-holder">
+                                                                            <a href="#" [ngClass]="item.type === 'tech'? 'selected' : ''" (click)="selectedTag($event,'tech',item.key)">                                                                
+                                                                                  <div  class="tag-selector-icon">
+                                                                                          <i aria-hidden="true" class="fa fa-microchip"></i></div>
+                                                                                <div style="font-size: 12px;">Tech</div>
+                                                                             </a>
+                                                            </div>
+                            
+                                                            <div class="tag-selector-holder">
+                                                                            <a href="#" [ngClass]="item.type === 'other'? 'selected' : ''" (click)="selectedTag($event,'other',item.key)">                                                                
+                                                                                  <div class="tag-selector-icon">
+                                                                                          <i aria-hidden="true" class="fa fa-th"></i></div>
+                                                                                <div style="font-size: 12px;">Other</div>
+                                                                             </a>
+                                                            </div>
+                                                                           
+                                                    </div>        
+                                                    <div (click)="showHideTwitterWidget($event,item.key)" [ngClass]="(item.shown)? 'widget-available item-class':'item-class'"
+                                                            >
+                                                                            @{{item.key}}
+                                                            </div>  
+                                                 </div>  </div>  
+                                                 </div> 
+                                              </div>    
+                </md-tab>
+                <md-tab >  
+
+                                <ng-template md-tab-label>
+                                                <i class="label-icon-fa fa fa-th" aria-hidden="true"></i>                                
+                                                Other
+                                  </ng-template>
+
+                                  <div class='key-holder'>
+                                          <div *ngFor="let item of keysListAt; let i = index">
+                                                <div class='key-holder-key' *ngIf="item.type==='other'">
+                                                 <div class='key-holder-close'>
+                                                    <i class="fa fa-tag" aria-hidden="true" (click)="tagKeys($event,item)"></i>                                
+                                                    <i class="fa fa-times" aria-hidden="true" (click)="deleteKeys($event,item)"></i>
+                                                 </div>     
+                                                 <div  class='key-holder-key-content'>
+                                                    <div class="hide tag-selector">
+                                                            
+                                                            <div class="tag-selector-holder">
+                                                                <a href="#" [ngClass]="item.type === 'news'? 'selected' : ''" (click)="selectedTag($event,'news',item.key)">                                                                
+                                                                      <div class="tag-selector-icon">
+                                                                              <i aria-hidden="true" class="fa fa-newspaper-o"></i></div>
+                                                                    <div style="font-size: 12px;">News</div>
+                                                                 </a>
+                                                            </div>
+                                                            <div class="tag-selector-holder">
+                                                                            <a href="#" [ngClass]="item.type === 'sport'? 'selected' : ''" (click)="selectedTag($event,'sport',item.key)">                                                                
+                                                                                  <div  class="tag-selector-icon">
+                                                                                          <i aria-hidden="true" class="fa fa-futbol-o"></i></div>
+                                                                                <div style="font-size: 12px;">Sport</div>
+                                                                             </a>
+                                                            </div>
+                            
+                                                            <div class="tag-selector-holder">
+                                                                            <a href="#" [ngClass]="item.type === 'tech'? 'selected' : ''" (click)="selectedTag($event,'tech',item.key)">                                                                
+                                                                                  <div  class="tag-selector-icon">
+                                                                                          <i aria-hidden="true" class="fa fa-microchip"></i></div>
+                                                                                <div style="font-size: 12px;">Tech</div>
+                                                                             </a>
+                                                            </div>
+                            
+                                                            <div class="tag-selector-holder">
+                                                                            <a href="#" [ngClass]="item.type === 'other'? 'selected' : ''" (click)="selectedTag($event,'other',item.key)">                                                                
+                                                                                  <div class="tag-selector-icon">
+                                                                                          <i aria-hidden="true" class="fa fa-th"></i></div>
+                                                                                <div style="font-size: 12px;">Other</div>
+                                                                             </a>
+                                                            </div>
+                                                                           
+                                                    </div>        
+                                                    <div (click)="showHideTwitterWidget($event,item.key)" [ngClass]="(item.shown)? 'widget-available item-class':'item-class'"
+                                                            >
+                                                                            @{{item.key}}
+                                                            </div>  
+                                                 </div>  
+                                                 </div> </div>
+                                              </div>     
+                        </md-tab>
+        </md-tab-group>
+  
+        <br/><br/>
+        <div class="mat-ink-bar" style="visibility: visible; left: 0px; width: 0px;"></div>
+</div>
+<div>        
+        <!-- <a class="twitter-timeline" data-dnt="true" href="https://twitter.com/hashtag/WIN" data-widget-id="908724612095021056">#WIN Tweets</a> -->
+       
+        <div class="devider-line">
+        </div>
+
+        <div class="tweet-holder">
+                        
+                <div class="tweet-holder-box"  [class.hide]="!item.shown" *ngFor="let item of keysListAt; let i = index">
+                 <div><div class="timeline-Header">
+                                        <h1 class="timeline-Header-title u-inlineBlock" data-scribe="element:title">Tweets <span class="timeline-Header-byline" data-scribe="element:byline">by 
+                                         <a class="customisable-highlight" href="https://twitter.com/{{item.key}}" title="‎@{{item.key}}">‎@{{item.key}}</a></span></h1>
+                               </div></div>
+                <div class="tweet-anchor-holder-box" >
+
+                        <a class="twitter-timeline" href="https://twitter.com/{{item.key}}">Tweets by {{item.key}}</a>                                         
+                </div>
+        </div>
+       
 </div>
 
-<div class='textarea-holder'>
-<div>
-    <textarea value="{{cssStyle}}" [(ngModel)]="cssStyle" (ngModelChange)="changeInScriptName()">
-        test{
-          color: green;
-       }
-    </textarea>
-</div>
 
-<div>
-    <textarea  value="{{cssUpdated}}" [(ngModel)]="cssUpdated">
-    </textarea>
-</div>
-</div>
