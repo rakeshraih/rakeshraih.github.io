@@ -117,13 +117,18 @@ export class AppComponent implements OnInit {
     addKey($event) {
 
        const index = this.keysListAt.findIndex(i => i.key.toLowerCase() === this.key.toLowerCase());
+
+       setTimeout(function() {
+        document.getElementById('user-msg').innerText = '';
+      }, 3000);
+
        if ( index !== -1) {
            document.getElementById('user-msg').innerText = this.key + ' already selected, available under @Twitter tab.';
-        
-        setTimeout(function() {
-            document.getElementById('user-msg').innerText = '';
-          }, 3000);
            return;
+       }
+
+       if (!this.key || this.key.trim() === "") {
+        return;
        }
       // this.keysListAt.push(this.key);
        const newTweet = new Tweet();
