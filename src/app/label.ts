@@ -4,4 +4,5 @@ export class Label {
     deleted: boolean;
     labelClass: string;
     isShown: boolean;
+    showLabel: boolean;
   }

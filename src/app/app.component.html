@@ -65,7 +65,9 @@
                                  <div *ngFor="let label of labelList; let i = index">
                                         <div class='key-holder-key' *ngIf="label.isShown">
                                                  <div class='key-holder-close'>
-                                                    <i class="fa fa-times" aria-hidden="true" (click)="deleteKeys($event,label.labelKey)"></i>
+                                                    <i *ngIf="label.showLabel" class="fa fa-eye" (click)="showHideLabels(label.labelKey)" aria-hidden="true"></i>   
+                                                    <i *ngIf="!label.showLabel" class="fa fa-eye-slash" (click)="showHideLabels(label.labelKey)" aria-hidden="true"></i>                                                   
+                                                    <i class="fa fa-times" aria-hidden="true" (click)="deleteLabels($event,label.labelKey)"></i>
                                                  </div>     
                                                  <div  class='key-holder-key-content'>   
                                                     <div>

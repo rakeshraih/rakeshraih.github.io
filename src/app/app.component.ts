@@ -155,6 +155,27 @@ export class AppComponent implements OnInit {
         $event.stopPropagation();
     }
 
+    showHideLabels(labelType) {
+        
+        for (const label of this.labelList){
+            if (labelType === label.labelKey) {
+                label.showLabel = !label.showLabel;
+            }
+        }
+       
+        event.preventDefault();
+        event.stopPropagation();
+    }
+
+    deleteLabels($event, key) {
+        
+                const index = this.keysListAt.findIndex(i => i.key === key.key);
+                this.keysListAt.splice(index, 1);
+        
+                this.newSubject.next(this.key);
+                $event.stopPropagation();
+            }
+
     showHideTwitterWidget(event, key) {
 
         for (const tweet of this.keysListAt){
