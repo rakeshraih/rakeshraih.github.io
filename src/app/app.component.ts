@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
     labelList: Label[];
 
     key = 'Visa';
+    labelName = '';
 
     newSubject = new Subject<string>();
 
@@ -146,6 +147,21 @@ export class AppComponent implements OnInit {
        $event.stopPropagation();
     }
 
+    addLabel() {
+        const index = this.labelList.findIndex(i => i.labelName.toLowerCase() === this.labelName.toLowerCase());
+        if ( index !== -1) {
+            return;
+        }
+
+        const localLable = new Label();
+        localLable.labelKey = this.labelName.toLowerCase();
+        localLable.isShown = true;
+        localLable.showLabel = true;
+        localLable.labelClass = 'fa fa-inbox';
+        localLable.labelName = this.labelName;
+        this.labelList.push(localLable);
+    }
+
     deleteKeys($event, key) {
 
         const index = this.keysListAt.findIndex(i => i.key === key.key);
@@ -167,14 +183,13 @@ export class AppComponent implements OnInit {
         event.stopPropagation();
     }
 
-    deleteLabels($event, key) {
+    deleteLabels($event, labelKey) {
         
-                const index = this.keysListAt.findIndex(i => i.key === key.key);
-                this.keysListAt.splice(index, 1);
+        const index = this.labelList.findIndex(i => i.labelKey === labelKey);
+        this.labelList.splice(index, 1);
         
-                this.newSubject.next(this.key);
-                $event.stopPropagation();
-            }
+        $event.stopPropagation();
+    }
 
     showHideTwitterWidget(event, key) {
 

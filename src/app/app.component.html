@@ -23,6 +23,7 @@
                                                         <i aria-hidden="true" class="label-icon-fa" [ngClass]=label.labelClass></i>                                                        
                                                       {{label.labelName}}
                                         </ng-template>
+
                                         <div class='key-holder'>
                                         <div *ngFor="let item of keysListAt;">
                                           <div *ngIf="!label.isShown || item.type === label.labelKey" class='key-holder-key'>
@@ -61,7 +62,18 @@
                                                 Manage Label
                        </ng-template>
 
-                       <div class="manage-tags">
+                       
+                       <div>
+                        <div>
+                                <br/>
+                                <md-form-field class="">
+                                                <input mdInput [(ngModel)]="labelName" placeholder="Label Name" value="{{labelName}}">  
+                                </md-form-field>
+                                <i  class="fa fa-plus" (click)="addLabel()" aria-hidden="true"></i>   
+                                
+
+                        </div>
+                        <div class="manage-tags">
                                  <div *ngFor="let label of labelList; let i = index">
                                         <div class='key-holder-key' *ngIf="label.isShown">
                                                  <div class='key-holder-close'>
@@ -75,7 +87,7 @@
                                                     </div>  
                                                  </div>  
                                                  </div> </div>
-                          </div>                  
+                          </div>      </div>            
                         </md-tab> 
         </md-tab-group>
   
