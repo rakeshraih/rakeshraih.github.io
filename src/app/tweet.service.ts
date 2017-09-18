@@ -1,3 +1,4 @@
+import { LABELS } from './mock-label';
 import { TWEETS } from './mock-tweets';
 import { Injectable } from '@angular/core';
 
@@ -8,6 +9,10 @@ export class TweetService {
 
   getTweets() {
     return TWEETS;
+  }
+
+  getLabels() {
+    return LABELS;
   }
 
   getTweetsFromLocalStorage() {
@@ -25,5 +30,17 @@ export class TweetService {
   setTweetsToLocalStorage(tweetList) {
     localStorage.setItem('my-tweet-list', JSON.stringify(tweetList));
   }
+
+  getLabelsFromLocalStorage() {
+    
+        const itemList = localStorage.getItem('my-label-list');
+    
+        if (itemList && itemList.trim().length > 2) {
+          return JSON.parse(itemList);
+        }
+    
+        return this.getLabels();
+    
+      }
 
 }

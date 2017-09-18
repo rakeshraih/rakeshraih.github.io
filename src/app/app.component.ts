@@ -1,3 +1,4 @@
+import { Label } from './label';
 import { Component , OnInit} from '@angular/core';
 import { Http } from '@angular/http';
 
@@ -16,13 +17,16 @@ import { TweetService } from './tweet.service';
 export class AppComponent implements OnInit {
 
     keysListAt: Tweet[];
+    labelList: Label[];
+
     key = 'Visa';
 
     newSubject = new Subject<string>();
 
     constructor(private tweetService: TweetService) {
         this.keysListAt = this.tweetService.getTweetsFromLocalStorage();
-        this.key ='';
+        this.labelList = this.tweetService.getLabels();
+        this.key = '';
 
     }
 

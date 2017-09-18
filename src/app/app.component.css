@@ -13,7 +13,7 @@ md-form-field{
   min-width: 300px;
 }
 
-.key-holder{
+.key-holder, .manage-tags{
   display: flex;
   justify-content: start;
   flex-wrap: wrap;
@@ -24,7 +24,7 @@ md-form-field{
 }
 .key-holder-key-content{
   background: #3f51b5;  
-  padding: 5px;  
+  padding: 5px 10px 5px 10px;
   color: white;
   font-size: 24px;
 }
@@ -129,11 +129,14 @@ a{
   margin-right: 0px;
 }
 
-.label-icon-fa{
+.label-icon-fa, .md-tab-label i, .md-tab-label .fa{
   padding-right: 10px;
   padding-top: 1px;
 }
 
+.tag-selector .tag-selector-holder:first-child{
+display: none;
+}
 #user-msg{
   position: absolute;
   font-size: 12px;
