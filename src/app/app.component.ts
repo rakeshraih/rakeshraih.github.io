@@ -132,7 +132,7 @@ export class AppComponent implements OnInit {
            return;
        }
 
-       if (!this.key || this.key.trim() === "") {
+       if (!this.key || this.key.trim() === '') {
         return;
        }
       // this.keysListAt.push(this.key);
@@ -157,8 +157,9 @@ export class AppComponent implements OnInit {
         localLable.labelKey = this.labelName.toLowerCase();
         localLable.isShown = true;
         localLable.showLabel = true;
-        localLable.labelClass = 'fa fa-inbox';
+        localLable.labelClass = 'fa fa-star';
         localLable.labelName = this.labelName;
+        localLable.deleted = true;
         this.labelList.push(localLable);
     }
 
@@ -172,22 +173,27 @@ export class AppComponent implements OnInit {
     }
 
     showHideLabels(labelType) {
-        
+
         for (const label of this.labelList){
             if (labelType === label.labelKey) {
                 label.showLabel = !label.showLabel;
             }
         }
-       
+
         event.preventDefault();
         event.stopPropagation();
     }
 
     deleteLabels($event, labelKey) {
-        
+
         const index = this.labelList.findIndex(i => i.labelKey === labelKey);
+
+        for (const tweet of this.keysListAt){
+            if (labelKey.toLowerCase() === tweet.type) {
+                tweet.type = 'other';
+            }
+        }
         this.labelList.splice(index, 1);
-        
         $event.stopPropagation();
     }
 

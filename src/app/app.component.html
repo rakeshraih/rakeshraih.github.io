@@ -17,14 +17,16 @@
 
         
          <md-tab-group>
-                     <!-- //// -->
-                        <md-tab *ngFor="let label of labelList; let i = index">
-                                        <ng-template md-tab-label>
+                     <!-- //// --> 
+                     <ng-container *ngFor="let label of labelList; let i = index">
+
+                        <md-tab *ngIf="label.showLabel">
+                                        <ng-template  md-tab-label>
                                                         <i aria-hidden="true" class="label-icon-fa" [ngClass]=label.labelClass></i>                                                        
                                                       {{label.labelName}}
                                         </ng-template>
 
-                                        <div class='key-holder'>
+                                        <div  class='key-holder'>
                                         <div *ngFor="let item of keysListAt;">
                                           <div *ngIf="!label.isShown || item.type === label.labelKey" class='key-holder-key'>
                                            <div class='key-holder-close'>
@@ -52,12 +54,12 @@
                                       </div></div>    
                       
                                       </md-tab>
-
+                                </ng-container>
                                       <!-- /**** -->
 
 
                 <md-tab>
-
+                       
                         <ng-template md-tab-label>
                                                 Manage Label
                        </ng-template>
@@ -79,7 +81,7 @@
                                                  <div class='key-holder-close'>
                                                     <i *ngIf="label.showLabel" class="fa fa-eye" (click)="showHideLabels(label.labelKey)" aria-hidden="true"></i>   
                                                     <i *ngIf="!label.showLabel" class="fa fa-eye-slash" (click)="showHideLabels(label.labelKey)" aria-hidden="true"></i>                                                   
-                                                    <i class="fa fa-times" aria-hidden="true" (click)="deleteLabels($event,label.labelKey)"></i>
+                                                    <i *ngIf="label.deleted" class="fa fa-times" aria-hidden="true" (click)="deleteLabels($event,label.labelKey)"></i>
                                                  </div>     
                                                  <div  class='key-holder-key-content'>   
                                                     <div>
