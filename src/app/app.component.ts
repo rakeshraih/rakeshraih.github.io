@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     keysListAt: Tweet[];
     labelList: Label[];
 
-    key = 'Visa';
+    key = '';
     labelName = '';
 
     newSubject = new Subject<string>();
@@ -27,7 +27,8 @@ export class AppComponent implements OnInit {
     constructor(private tweetService: TweetService) {
         this.keysListAt = this.tweetService.getTweetsFromLocalStorage();
         this.labelList = this.tweetService.getLabelsFromLocalStorage();
-        this.key = '';
+        this.key = 'NASA';
+        this.labelName = 'Tech';
 
     }
 
@@ -162,7 +163,8 @@ export class AppComponent implements OnInit {
         localLable.deleted = true;
         this.labelList.push(localLable);
 
-        this.tweetService.setTweetsToLocalStorage(this.labelList);
+        this.tweetService.setLabelsToLocalStorage(this.labelList);
+        this.labelName = '';
     }
 
     deleteKeys($event, key) {
@@ -182,7 +184,7 @@ export class AppComponent implements OnInit {
             }
         }
 
-        this.tweetService.setTweetsToLocalStorage(this.labelList);
+        this.tweetService.setLabelsToLocalStorage(this.labelList);
         event.preventDefault();
         event.stopPropagation();
     }
@@ -197,7 +199,7 @@ export class AppComponent implements OnInit {
             }
         }
         this.labelList.splice(index, 1);
-        this.tweetService.setTweetsToLocalStorage(this.labelList);
+        this.tweetService.setLabelsToLocalStorage(this.labelList);
         $event.stopPropagation();
     }
 
@@ -209,6 +211,17 @@ export class AppComponent implements OnInit {
             }
         }
         this.newSubject.next(this.key);
+    }
+
+    totalCountOfEachLabel(key) {
+        let count = 0 ;
+        for (const tweet of this.keysListAt){
+            if (key === tweet.type) {
+                count++;
+            }
+        }
+
+      return count === 0 ? true : false;
     }
 
 }

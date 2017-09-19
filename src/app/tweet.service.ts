@@ -43,4 +43,8 @@ export class TweetService {
     
       }
 
+      setLabelsToLocalStorage(labellist) {
+        localStorage.setItem('my-label-list', JSON.stringify(labellist));
+      }
+
 }

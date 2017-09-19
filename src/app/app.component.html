@@ -3,7 +3,7 @@
 
          <div class="top-bar">
                 <md-form-field class="">
-                        <input mdInput [(ngModel)]="key" placeholder="@Twitter" value="{{key}}">  
+                        <input mdInput [(ngModel)]="key" placeholder="Tweets by @" value="{{key}}">  
                         <span id="user-msg"></span>           
                  </md-form-field>
                 <span>
@@ -51,7 +51,10 @@
                                                       </div>  
                                            </div>  
                                            </div> 
-                                      </div></div>    
+                                      </div>
+                                      <span class="no-tweets-by" *ngIf="(label.isShown && totalCountOfEachLabel(label.labelKey))">
+                                              No content under this label tab, Go to <b>Tweets By @</b> tab to add any tweets by to this label.</span>                                      
+                                </div>    
                       
                                       </md-tab>
                                 </ng-container>
@@ -89,7 +92,12 @@
                                                     </div>  
                                                  </div>  
                                                  </div> </div>
-                          </div>      </div>            
+                          </div>      </div>  
+                          <br/>
+                          <span class="no-tweets-by"> 
+                                        <i class="fa fa-eye" aria-hidden="true"></i>|<i class="fa fa-eye-slash" aria-hidden="true"></i>   
+                                        Show or hide <b>Label</b> tab from the list of tabs.
+                        </span>
                         </md-tab> 
         </md-tab-group>
   

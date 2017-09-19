@@ -157,6 +157,14 @@ display: none;
 .mat-tab-label {
   min-width: 75px;
 } 
+
+.no-tweets-by{
+  padding-top: 20px;
+}
+
+.fa-eye-slash{
+  color: #626262;
+}
 @media screen and (max-width: 700px) {
   .top-bar{
     font-size: 22px;
