@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
 
     constructor(private tweetService: TweetService) {
         this.keysListAt = this.tweetService.getTweetsFromLocalStorage();
-        this.labelList = this.tweetService.getLabels();
+        this.labelList = this.tweetService.getLabelsFromLocalStorage();
         this.key = '';
 
     }
@@ -161,6 +161,8 @@ export class AppComponent implements OnInit {
         localLable.labelName = this.labelName;
         localLable.deleted = true;
         this.labelList.push(localLable);
+
+        this.tweetService.setTweetsToLocalStorage(this.labelList);
     }
 
     deleteKeys($event, key) {
@@ -180,6 +182,7 @@ export class AppComponent implements OnInit {
             }
         }
 
+        this.tweetService.setTweetsToLocalStorage(this.labelList);
         event.preventDefault();
         event.stopPropagation();
     }
@@ -194,6 +197,7 @@ export class AppComponent implements OnInit {
             }
         }
         this.labelList.splice(index, 1);
+        this.tweetService.setTweetsToLocalStorage(this.labelList);
         $event.stopPropagation();
     }
 
