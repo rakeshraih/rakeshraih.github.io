@@ -129,7 +129,7 @@ export class AppComponent implements OnInit {
       }, 3000);
 
        if ( index !== -1) {
-           document.getElementById('user-msg').innerText = this.key + ' already selected, available under @Twitter tab.';
+           document.getElementById('user-msg').innerText = this.key + ' is already added, avilabel under \'Tweets by @\'  tab.';
            return;
        }
 
