@@ -175,3 +175,7 @@ display: none;
     padding: 5px;
   }
 }
+
+.fa-plus-circle:hover{
+  color: #3f51b5;
+}

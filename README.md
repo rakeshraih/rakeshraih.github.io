@@ -5,7 +5,11 @@
 
 Tool to group the tweets by based on the type, Like Google, Apple can be labeled as tech, where as CNN, Fox can be labelled as News. By grouping we can directlt get into tweets by. 
 
-Also has feature to add/remove lables, labes are set as tabs for easy navigation.
+- Add/remove new tweets by @
+- Add/remove new label
+- Show/Hide tweets widget
+- Show/Hide the label tabs
+- Tag the tweets by with label etc etc!
 
 Twitter widget is used to show the tweets.
 
