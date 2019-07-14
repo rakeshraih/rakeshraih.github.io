@@ -121,10 +121,25 @@
     });
     
 
+    function validateEmail(email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+      }
     
     //===== 
     
-    
+    $('#submitMessage').on('click', function(event) {
+
+        var name = document.forms["contact-form"]["name"].value;
+        var email = document.forms["contact-form"]["email"].value;
+        var message = document.forms["contact-form"]["message"].value;
+        
+        if (name == "" || message === "" || email == ""  || !validateEmail(email)) {
+          alert("All fields are mandatory and expect valid data");
+          return false;
+        }
+        window.open('mailto:'+email+'?subject=Email from '+name+'&body='+message+'');
+    });
     
     
     
