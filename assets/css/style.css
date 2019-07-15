@@ -1006,7 +1006,7 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(117, 78, 249, 0.8);
+    background-color:#a8026f;
     opacity: 0;
     visibility: hidden;
     -webkit-transition: all 0.3s ease-out 0s;
@@ -1095,7 +1095,7 @@ p {
             -o-transform: translateX(100%);
             transform: translateX(100%); }
   .single-work:hover .work-overlay {
-    opacity: 1;
+    opacity: 0.8;
     visibility: visible; }
     .single-work:hover .work-overlay .work-content .work-title {
       -webkit-transform: translateY(0);
