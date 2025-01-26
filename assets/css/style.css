@@ -745,7 +745,9 @@ p {
     transform: translateY(-50%); }
   .header-image img {
     position: relative;
-    z-index: 5; }
+    z-index: 5;
+    visibility: hidden;
+  }
 
 .header-social {
   position: absolute;
